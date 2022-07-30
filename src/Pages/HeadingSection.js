@@ -1,29 +1,20 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 
-export default function HeadingSection({
-  title,
-  setTitle,
-  body,
-  setBody,
-  archived,
-  setArchive,
-  addNoteHandler,
-  message,
-}) {
+export default function HeadingSection({ ...props }) {
   return (
     <div className="container section-heading">
       <div className="d-flex flex-row align-self-stretch">
         <div className="col-12 col-lg-5 form-section pe-3">
           <h3 className="title-form">Add Note</h3>
-          <form onSubmit={addNoteHandler}>
+          <form onSubmit={props.addNoteHandler}>
             <div className="mb-3 form-group">
               <label htmlFor="title_note" className="form-label label">
                 Title *{" "}
                 <span className="limit">
                   (Max 50 characters{" "}
-                  <span style={{ color: title.length === 50 && "red" }}>
-                    ({title.length}/50)
+                  <span style={{ color: props.title.length === 50 && "red" }}>
+                    ({props.title.length}/50)
                   </span>
                   )
                 </span>
@@ -34,13 +25,15 @@ export default function HeadingSection({
                 type="text"
                 className="form-control"
                 id="title_note"
-                value={title}
+                value={props.title}
                 onChange={function (event) {
-                  setTitle(event.target.value);
+                  props.setTitle(event.target.value);
                 }}
                 maxLength={50}
               />
-              {!title && <div className="errorMessage">{message[0]}</div>}
+              {!props.title && (
+                <div className="errorMessage">{props.message[0]}</div>
+              )}
             </div>
             <div className="mb-3 form-group">
               <label htmlFor="body_note" className="form-label label">
@@ -52,12 +45,14 @@ export default function HeadingSection({
                 className="form-control"
                 id="body_note"
                 aria-describedby="emailHelp"
-                value={body}
+                value={props.body}
                 onChange={function (event) {
-                  setBody(event.target.value);
+                  props.setBody(event.target.value);
                 }}
               />
-              {!body && <div className="errorMessage">{message[1]}</div>}
+              {!props.body && (
+                <div className="errorMessage">{props.message[1]}</div>
+              )}
             </div>
             <div className="d-flex flex-row">
               <label htmlFor="archivedInput" className="form-label label">
@@ -73,9 +68,9 @@ export default function HeadingSection({
                   name="archivedInput"
                   id="archivedInput"
                   aria-label="Checkbox for following text input"
-                  checked={archived}
+                  checked={props.archived}
                   onChange={function (event) {
-                    setArchive(event.target.checked);
+                    props.setArchive(event.target.checked);
                   }}
                 />
                 <label

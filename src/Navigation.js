@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Navigation({ search, onSearchHandler, notes }) {
-  const [randomx] = useState(Math.floor(Math.random() * notes.length));
+export default function Navigation({ ...props }) {
+  const [randomx] = useState(Math.floor(Math.random() * props.notes.length));
 
   return (
     <div className="container navigation">
@@ -18,12 +18,12 @@ export default function Navigation({ search, onSearchHandler, notes }) {
             type="text"
             id="search"
             className="form-control"
-            value={search}
-            onChange={onSearchHandler}
+            value={props.search}
+            onChange={props.onSearchHandler}
             placeholder={
-              notes.filter((note) => note).length > 2
-                ? typeof notes[randomx] !== "undefined"
-                  ? "Search : " + notes[randomx].title + " ?"
+              props.notes.filter((note) => note).length > 2
+                ? typeof props.notes[randomx] !== "undefined"
+                  ? "Search : " + props.notes[randomx].title + " ?"
                   : "Search ...."
                 : "Search ..."
             }

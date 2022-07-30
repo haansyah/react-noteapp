@@ -4,11 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Notes from "./Pages/Notes";
 import Archive from "./Pages/Archive";
 
-export default function RoutePage({
-  filtered,
-  removeNoteHandler,
-  archiveNoteHandler,
-}) {
+export default function RoutePage({ ...props }) {
   return (
     <>
       <Routes>
@@ -16,9 +12,10 @@ export default function RoutePage({
           path="/"
           element={
             <Notes
-              filtered={filtered}
-              removeNoteHandler={removeNoteHandler}
-              archiveNoteHandler={archiveNoteHandler}
+              search={props.search}
+              filtered={props.filtered}
+              removeNoteHandler={props.removeNoteHandler}
+              archiveNoteHandler={props.archiveNoteHandler}
             />
           }
         />
@@ -26,9 +23,10 @@ export default function RoutePage({
           path="/archived"
           element={
             <Archive
-              filtered={filtered}
-              removeNoteHandler={removeNoteHandler}
-              archiveNoteHandler={archiveNoteHandler}
+              search={props.search}
+              filtered={props.filtered}
+              removeNoteHandler={props.removeNoteHandler}
+              archiveNoteHandler={props.archiveNoteHandler}
             />
           }
         />

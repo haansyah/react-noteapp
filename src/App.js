@@ -54,14 +54,19 @@ function App() {
     ]);
 
     clearAll();
-    toast.success("Yay! Your Note has been Added", {
-      position: "top-right",
-      duration: 2000,
-      style: {
-        background: "#3CCF4E",
-        color: "#fff",
-      },
-    });
+    toast.success(
+      `${
+        archived ? "Added new Archive Note" : "Yay! Your Note has been Added "
+      }`,
+      {
+        position: "top-right",
+        duration: 2000,
+        style: {
+          background: "#3CCF4E",
+          color: "#fff",
+        },
+      }
+    );
   }
 
   function clearAll() {
@@ -147,6 +152,7 @@ function App() {
       />
       <RoutePage
         filtered={filtered}
+        search={search}
         removeNoteHandler={removeNoteHandler}
         archiveNoteHandler={archiveNoteHandler}
       />
